@@ -1,4 +1,5 @@
 from http.client import responses
+from multiprocessing.managers import Value
 
 from fastapi import FastAPI, Response, status
 import requests
@@ -10,7 +11,9 @@ app = FastAPI()
 @app.get("/api/classify-number", status_code=status.HTTP_200_OK)
 def read_root(response : Response, number:int =0):
     number = number
-    if not isinstance(number,int):
+    try:
+        number= int(number)
+    except ValueError:
         response.status_code =status.HTTP_400_BAD_REQUEST
         return {
     "number": "alphabet",

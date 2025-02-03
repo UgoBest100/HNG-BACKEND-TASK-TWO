@@ -15,6 +15,8 @@ def is_prime(num):
         return False
 
 def is_perfect(Input_Number):
+    if Input_Number <=0:
+        return False
     Sum = 0
     for i in range(1, Input_Number):
         if (Input_Number % i == 0):
@@ -25,12 +27,14 @@ def is_perfect(Input_Number):
         return False
 
 def is_armstrong(num):
+    if num <0:
+        return False
     num_str = str(num)
     num_digits = len(num_str)
     sum_of_powers = sum(int(digit)**num_digits for digit in num_str)
     return sum_of_powers == num
 def digit_sum(num):
-    num_str = str(num)
+    num_str = str(abs(num))
     num_digits = len(num_str)
     sum_of_digit = sum(int(digit) for digit in num_str)
     return sum_of_digit
